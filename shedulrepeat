@@ -1,0 +1,26 @@
+package org.example;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class SendKeyboardShortcuts {
+    public static void main(String[] args) {
+        try {
+            Robot robot = new Robot();
+
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    robot.keyPress(KeyEvent.VK_CONTROL);
+                    robot.keyPress(KeyEvent.VK_P);
+                    robot.keyRelease(KeyEvent.VK_P);
+                    robot.keyRelease(KeyEvent.VK_CONTROL);
+                }
+            }, 5, 1000 * 60 * 60 * 24); // run every 24 hours
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
